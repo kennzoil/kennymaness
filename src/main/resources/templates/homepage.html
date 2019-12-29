@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>Homepage</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<head th:replace="fragments :: head"></head>
 
 <body>
-Homepage!
+    <div>This is the homepage!</div>
+
+    <div th:replace="fragments :: navigation"></div>
+
 </body>
 
 </html>

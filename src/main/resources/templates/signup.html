@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div>
+    <form method="post" action="/signup">
+        <fieldset>
+            <legend>Enter your name to be listed as a fan!</legend>
+            <div><input type="text" name="first_name" placeholder="first name"></div>
+            <div><input type="text" name="last_name" placeholder="last name"></div>
+            <div><input type="text" name="username" placeholder="username"></div>
+            <div><input type="text" name="email" placeholder="email address"></div>
+            <div><input type="submit" value="I'm a fan!"></div>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="fragments :: navigation"></div>
+
+</body>
+
+</html>

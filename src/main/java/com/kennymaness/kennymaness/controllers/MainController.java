@@ -12,30 +12,55 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
+
+
     @Autowired
     private UserDao UserDao;
 
     @GetMapping("/")
     public String renderHomepage( Model model ) {
 
-        // add data to the model for use in the template
-        // model.addAttribute("attribute", "value");
-
-        User user = new User();
-        user.setUsername("HEYYYYY");
-        UserDao.save(user);
-
         return "homepage";
     }
 
-//    @GetMapping("/greeting")
-//    public String greeting( @RequestParam( name="name", required=false, defaultValue="World" ) String name, Model model) {
-//        model.addAttribute("name", name);
-//
-//        System.out.println("Here is the value of name:");
-//        System.out.println(name);
-//
-//        return "greeting";
-//    }
+    @GetMapping("/signup")
+    public String renderSignupPage() {
+        return "signup";
+    }
+
+    // This handler method
+    @PostMapping("/signup")
+    public String signupForm(
+
+    // receives data from the form in the signup template,
+            @RequestParam
+                String first_name,
+                String last_name,
+                String username,
+                String email,
+                Model model
+    ) {
+
+    // adds each piece of data as an attribute of the model,
+        model.addAttribute("first_name", first_name);
+        model.addAttribute("last_name", last_name);
+        model.addAttribute("username", username);
+        model.addAttribute("email", email);
+
+    // instantiates a new User object,
+        User user = new User();
+
+    // uses that object's setters to populate it with its respective attributes,
+        user.setFirstName(first_name);
+        user.setLastName(last_name);
+        user.setUsername(username);
+        user.setEmail(email);
+
+    // uses the DAO to save that object to the database,
+        UserDao.save(user);
+
+    // then renders the signup template.
+        return "signup";
+    }
 
 }
