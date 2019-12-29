@@ -4,7 +4,20 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-    <div>This is the homepage!</div>
+    <div><h1>This is the homepage!</h1></div>
+
+    <!-- TODO: access user data with thymeleaf -->
+
+    <!--        <div>-->
+    <!--            <fieldset>-->
+    <!--                <legend>Here are all the fans!</legend>-->
+    <!--                <table class="table">-->
+    <!--                    <tr th:each="user : ${users}">-->
+    <!--                        <td th:text="${user.getFullName()}"></td>-->
+    <!--                    </tr>-->
+    <!--                </table>-->
+    <!--            </fieldset>-->
+    <!--        </div>-->
 
     <div th:replace="fragments :: navigation"></div>
 

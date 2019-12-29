@@ -23,16 +23,23 @@ public class MainController {
         return "homepage";
     }
 
+    /** This handler method merely renders the signup template. */
     @GetMapping("/signup")
     public String renderSignupPage() {
         return "signup";
     }
 
-    // This handler method
+    /** This handler method receives data from the form in the signup template,
+     * adds each piece of data as an attribute of the model,
+     * instantiates a new User object,
+     * uses that object's setters to populate it with its respective attributes,
+     * uses the DAO to save that object to the database,
+     * then renders the signup template.
+     * **/
     @PostMapping("/signup")
     public String signupForm(
 
-    // receives data from the form in the signup template,
+    // receive data from the form in the signup template
             @RequestParam
                 String first_name,
                 String last_name,
@@ -41,25 +48,25 @@ public class MainController {
                 Model model
     ) {
 
-    // adds each piece of data as an attribute of the model,
+    // add each piece of data as an attribute of the model
         model.addAttribute("first_name", first_name);
         model.addAttribute("last_name", last_name);
         model.addAttribute("username", username);
         model.addAttribute("email", email);
 
-    // instantiates a new User object,
+    // instantiate a new User object
         User user = new User();
 
-    // uses that object's setters to populate it with its respective attributes,
+    // use that object's setters to populate it with its respective attributes
         user.setFirstName(first_name);
         user.setLastName(last_name);
         user.setUsername(username);
         user.setEmail(email);
 
-    // uses the DAO to save that object to the database,
+    // use the DAO to save that object to the database
         UserDao.save(user);
 
-    // then renders the signup template.
+    // render the signup template
         return "signup";
     }
 
