@@ -5,15 +5,17 @@
 
 <body>
     <div><h1>This is the homepage!</h1></div>
+    <div th:text="${user.username}"></div>
 
-    <!-- TODO: access user data with thymeleaf -->
+    <!-- TODO: access user data with thymeleaf
+        -->
 
     <!--        <div>-->
     <!--            <fieldset>-->
     <!--                <legend>Here are all the fans!</legend>-->
     <!--                <table class="table">-->
     <!--                    <tr th:each="user : ${users}">-->
-    <!--                        <td th:text="${user.getFullName()}"></td>-->
+    <!--                        <td th:text="${user.username}"></td>-->
     <!--                    </tr>-->
     <!--                </table>-->
     <!--            </fieldset>-->
