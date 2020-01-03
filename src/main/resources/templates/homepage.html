@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head"></head>
 
@@ -18,6 +18,10 @@
     <!--                </table>-->
     <!--            </fieldset>-->
     <!--        </div>-->
+
+    <div th:if="${first_name}">
+        <p th:text="'Hello, ' + ${first_name} + '!'"></p>
+    </div>
 
     <div th:replace="fragments :: navigation"></div>
 

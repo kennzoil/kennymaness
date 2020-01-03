@@ -1,19 +1,23 @@
 package com.kennymaness.kennymaness.models;
+import com.kennymaness.kennymaness.daos.*;
 
 import java.util.ArrayList;
 
-public class UserData {
+public class UserService {
 
-    static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
 
     // getAll
     public static ArrayList<User> getAll() {
         return users;
     }
 
-    // add
-    public static void add(User newUser) {
-        users.add(newUser);
+    // add a new User to the database
+    public static User createUser(String first_name, String last_name, String username, String email) {
+
+        User newUser = new User(first_name, last_name, username, email);
+
+        return newUser;
     }
 
     // remove
