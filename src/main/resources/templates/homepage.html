@@ -8,20 +8,16 @@
 
     <!-- TODO: access user data with thymeleaf -->
 
-    <!--        <div>-->
-    <!--            <fieldset>-->
-    <!--                <legend>Here are all the fans!</legend>-->
-    <!--                <table class="table">-->
-    <!--                    <tr th:each="user : ${users}">-->
-    <!--                        <td th:text="${user.getFullName()}"></td>-->
-    <!--                    </tr>-->
-    <!--                </table>-->
-    <!--            </fieldset>-->
-    <!--        </div>-->
+<!--    <table>-->
+<!--        <tr th:each="user : ${users}">-->
+<!--            <td><span th:text="${username}"> Username </span></td>-->
+<!--            <td><span th:text="${email}"> Email </span></td>-->
+<!--        </tr>-->
+<!--    </table>-->
 
-    <div th:if="${first_name}">
-        <p th:text="'Hello, ' + ${first_name} + '!'"></p>
-    </div>
+<!--    <div th:if="${first_name}">-->
+<!--        <p th:text="'Hello, ' + ${first_name} + '!'"></p>-->
+<!--    </div>-->
 
     <div th:replace="fragments :: navigation"></div>
 

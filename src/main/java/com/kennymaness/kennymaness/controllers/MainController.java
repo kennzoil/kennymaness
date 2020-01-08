@@ -7,16 +7,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 @Controller
+@RequestMapping("")
 public class MainController {
 
     @Autowired
-    private UserDao UserDao;
+    private UserDao userDao;
 
     @GetMapping("/")
-    public String renderHomepage() {return "homepage";}
+    public String renderHomepage(
+    ){
+        return "homepage";
+    }
 
     /** This handler method merely renders the signup template. */
     @GetMapping("/signup")
@@ -45,7 +52,7 @@ public class MainController {
 
     // add a new User object to the database
         User newUser = UserService.createUser(first_name, last_name, username, email);
-        UserDao.save(newUser);
+        userDao.save(newUser);
 
     // render the homepage template
         return "homepage";
