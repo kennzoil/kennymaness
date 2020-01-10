@@ -1,23 +1,19 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments :: head"></head>
+<head th:include="fragments :: head"></head>
 
 <body>
     <div><h1>This is the homepage!</h1></div>
 
     <!-- TODO: access user data with thymeleaf -->
 
-<!--    <table>-->
-<!--        <tr th:each="user : ${users}">-->
-<!--            <td><span th:text="${username}"> Username </span></td>-->
-<!--            <td><span th:text="${email}"> Email </span></td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-<!--    <div th:if="${first_name}">-->
-<!--        <p th:text="'Hello, ' + ${first_name} + '!'"></p>-->
-<!--    </div>-->
+    <table>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${username}"> Username </span></td>
+            <td><span th:text="${email}"> Email </span></td>
+        </tr>
+    </table>
 
     <div th:replace="fragments :: navigation"></div>
 

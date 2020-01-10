@@ -45,6 +45,7 @@ public class MainController {
     ) {
 
     // add each piece of data as an attribute of the model
+        model.addAttribute("title", "Sign Up");
         model.addAttribute("first_name", first_name);
         model.addAttribute("last_name", last_name);
         model.addAttribute("username", username);
@@ -53,6 +54,7 @@ public class MainController {
     // add a new User object to the database
         User newUser = UserService.createUser(first_name, last_name, username, email);
         userDao.save(newUser);
+        model.addAttribute("users", userDao.findAll());
 
     // render the homepage template
         return "homepage";
