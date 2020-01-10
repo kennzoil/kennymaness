@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
-    <title th:text="${title}">Kenny Maness</title>
+    <title>Kenny Maness</title>
     <meta charset="UTF-8"/>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
 
-    <footer>
-        <div th:fragment="navigation">
-            <nav>
-                <a href="/">Home</a> |
-                <a href="/login">Log In</a> |
-                <a href="/signup">Sign Up</a>
-            </nav>
-        </div>
-    </footer>
+<div th:fragment="navigation">
+<nav>
+<a href="/">Home</a> |
+<a href="/login">Log In</a> |
+<a href="/signup">Sign Up</a>
+</nav>
+</div>
 
 </body>
 </html>

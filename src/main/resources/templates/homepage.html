@@ -10,8 +10,10 @@
 
     <table>
         <tr th:each="user : ${users}">
-            <td><span th:text="${username}"> Username </span></td>
-            <td><span th:text="${email}"> Email </span></td>
+            <td><span th:text="${user.first_name}"></span></td>
+            <td><span th:text="${user.last_name}"></span></td>
+            <td><span th:text="${user.username}"></span></td>
+            <td><span th:text="${user.email}"></span></td>
         </tr>
     </table>
 

@@ -25,6 +25,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    public User(){}
     public User(String first_name, String last_name, String username, String email) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -53,8 +54,5 @@ public class User {
     // access email
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
-    // save to the database
-
 
 }
