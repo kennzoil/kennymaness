@@ -48,7 +48,7 @@ public class SignupController {
         userDao.save(newUser);
 
         // render the homepage template
-        return "homepage";
+        return "users";
     }
 
 }

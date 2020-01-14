@@ -5,20 +5,7 @@
 
 <body>
     <div><h1>This is the homepage!</h1></div>
-
-    <!-- TODO: access user data with thymeleaf -->
-
-    <table>
-        <tr th:each="user : ${users}">
-            <td><span th:text="${user.first_name}"></span></td>
-            <td><span th:text="${user.last_name}"></span></td>
-            <td><span th:text="${user.username}"></span></td>
-            <td><span th:text="${user.email}"></span></td>
-        </tr>
-    </table>
-
     <div th:replace="fragments :: navigation"></div>
-
 </body>
 
 </html>

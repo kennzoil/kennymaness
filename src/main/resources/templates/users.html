@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments :: head"></head>
+
+<body>
+<div><h1>These are the users.</h1></div>
+
+<!-- TODO: access user data with thymeleaf -->
+
+<p th:unless="${users} and ${users.size()}">no users :(</p>
+
+<div th:unless="${#lists.isEmpty(users)}">
+<table>
+    <tr th:each="user : ${users}">
+        <td><p th:text="${user.first_name}"></p>First Name</td>
+        <td><p th:text="${user.last_name}"></p>Last Name</td>
+        <td><p th:text="${user.username}"></p>Username</td>
+        <td><p th:text="${user.email}"></p>Email</td>
+    </tr>
+</table>
+</div>
+
+<div th:replace="fragments :: navigation"></div>
+
+</body>
+
+</html>
