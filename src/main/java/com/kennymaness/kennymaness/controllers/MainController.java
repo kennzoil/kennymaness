@@ -34,4 +34,9 @@ public class MainController {
         return "users";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "example")
+    public String examplePageGet(Model model) {
+        return "example";
+    }
+
 }

@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments :: head"></head>
+<head th:replace="fragments :: head"></head>
 
 <body>
+
+<div th:replace="fragments :: navigation"></div>
 
 <div th:if="${#lists.isEmpty(users)}">
 <h2>Sorry, there are no users to display at this time.</h2>
@@ -17,13 +19,12 @@
             <th>Username</th>
         </tr>
         <tr th:each="user : ${users}">
-            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getFullName()}"></td>
             <td th:text="${user.getUsername()}"></td>
         </tr>
     </table>
 </div>
 
-<div th:replace="fragments :: navigation"></div>
 </body>
 
 </html>

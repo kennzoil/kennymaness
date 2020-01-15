@@ -5,6 +5,7 @@
 
 <body>
 <div>
+    <div th:replace="fragments :: navigation"></div>
     <form method="post" action="/signup">
         <fieldset>
             <legend>Enter your name to be listed as a fan!</legend>
@@ -16,7 +17,7 @@
         </fieldset>
     </form>
 </div>
-<div th:replace="fragments :: navigation"></div>
+
 
 </body>
 
