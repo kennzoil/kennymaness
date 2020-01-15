@@ -4,25 +4,26 @@
 <head th:include="fragments :: head"></head>
 
 <body>
-<div><h1>These are the users.</h1></div>
 
-<!-- TODO: access user data with thymeleaf -->
+<div th:if="${#lists.isEmpty(users)}">
+<h2>Sorry, there are no users to display at this time.</h2>
+</div>
 
-<p th:unless="${users} and ${users.size()}">no users :(</p>
-
-<div th:unless="${#lists.isEmpty(users)}">
-<table>
-    <tr th:each="user : ${users}">
-        <td><p th:text="${user.first_name}"></p>First Name</td>
-        <td><p th:text="${user.last_name}"></p>Last Name</td>
-        <td><p th:text="${user.username}"></p>Username</td>
-        <td><p th:text="${user.email}"></p>Email</td>
-    </tr>
-</table>
+<div th:if="${not #lists.isEmpty(users)}">
+    <h2>Here are the users.</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.first_name}"></td>
+            <td th:text="${user.username}"></td>
+        </tr>
+    </table>
 </div>
 
 <div th:replace="fragments :: navigation"></div>
-
 </body>
 
 </html>

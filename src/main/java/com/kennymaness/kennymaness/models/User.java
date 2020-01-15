@@ -9,6 +9,8 @@ import javax.persistence.Column;
 @Entity
 public class User {
 
+    /* Columns */
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer user_id;
@@ -25,7 +27,12 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    /* Instantiation */
+
+    // Default Instantiation
     public User(){}
+
+    // Custom Instantiation
     public User(String first_name, String last_name, String username, String email) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -33,10 +40,10 @@ public class User {
         this.email = email;
     }
 
+    /* Getters & Setters */
+
     // access user_id
     public Integer getId() { return user_id; }
-
-    /* Getters and Setters */
 
     // access first_name, last_name
     public String getFirstName() { return first_name; }
