@@ -1,13 +1,11 @@
 package com.kennymaness.kennymaness.controllers;
 
 import com.kennymaness.kennymaness.models.*;
-import com.kennymaness.kennymaness.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/")
@@ -22,7 +20,7 @@ public class MainController {
     // render the homepage
     @RequestMapping(method = RequestMethod.GET)
     public String homepageGet(Model model) {
-        return "homepage";
+        return "example";
     }
 
     // render the users page
@@ -32,11 +30,6 @@ public class MainController {
         model.addAttribute("users", userService.listAll());
 
         return "users";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "example")
-    public String examplePageGet(Model model) {
-        return "example";
     }
 
 }
