@@ -41,3 +41,11 @@ body, html {
     min-height: 400px;
   }
 }
+
+.kmtable {
+    padding: 5px;
+}
+
+.w3-halfwide {
+    letter-spacing: 2px;
+}

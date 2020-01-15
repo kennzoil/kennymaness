@@ -20,7 +20,7 @@ public class MainController {
     // render the homepage
     @RequestMapping(method = RequestMethod.GET)
     public String homepageGet(Model model) {
-        return "example";
+        return "index";
     }
 
     // render the users page
