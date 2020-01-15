@@ -15,7 +15,7 @@ public class MainController {
 
     // instantiate UserDao object
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
     private User user;
 
@@ -29,7 +29,7 @@ public class MainController {
     @RequestMapping(method = RequestMethod.GET, value = "users")
     public String usersPageGet(Model model) {
 
-//        model.addAttribute("users", UserService.listAll());
+        model.addAttribute("users", userService.listAll());
 
         return "users";
     }

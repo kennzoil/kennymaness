@@ -13,11 +13,11 @@ public class UserService {
     private UserDao userDao;
 
     // listAll
-//    public static List<User> listAll() {
-//        List<User> users = new ArrayList<>();
-//        userDao.findAll().forEach(users::add);
-//        return users;
-//    }
+    public List<User> listAll() {
+        List<User> users = new ArrayList<>();
+        userDao.findAll().forEach(users::add);
+        return users;
+    }
 
     // create new User object with parameters
     public static User createUser(String first_name, String last_name, String username, String email) {

@@ -17,8 +17,8 @@
             <th>Name</th>
         </tr>
         <tr th:each="user : ${users}">
-            <td th:text="${user.first_name}"></td>
-            <td th:text="${user.username}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getUsername()}"></td>
         </tr>
     </table>
 </div>
