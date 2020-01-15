@@ -7,27 +7,36 @@
 
 <div th:replace="fragments :: navBar"></div>
 
-<div th:if="${#lists.isEmpty(users)}">
-    <fieldset>
-        <legend><h2>Sorry, there are no users to display at this time.</h2></legend>
-    </fieldset>
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-4 w3-display-container w3-opacity-min" id="home">
+
+    <div class="w3-center">
+        <div th:if="${#lists.isEmpty(users)}">
+            <fieldset>
+                <legend><h2>Sorry, there are no users to display at this time.</h2></legend>
+            </fieldset>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(users)}" class="w3-content w3-container w3-padding-64">
+            <fieldset>
+                <legend><h3 class="w3-center">Here are the users.</h3></legend>
+                <table class="kmtable">
+                    <tr>
+                        <th class="kmtable">Name</th>
+                        <th class="kmtable">Username</th>
+                    </tr>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.getFullName()}" class="kmtable"></td>
+                        <td th:text="${user.getUsername()}" class="kmtable"></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+
 </div>
 
-<div th:if="${not #lists.isEmpty(users)}" class="w3-content w3-container w3-padding-64">
-    <fieldset>
-        <legend><h3 class="w3-center">Here are the users.</h3></legend>
-        <table class="kmtable">
-            <tr>
-                <th class="kmtable">Name</th>
-                <th class="kmtable">Username</th>
-            </tr>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.getFullName()}" class="kmtable"></td>
-                <td th:text="${user.getUsername()}" class="kmtable"></td>
-            </tr>
-        </table>
-    </fieldset>
-</div>
+
 
 </body>
 

@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Kenny Maness</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
+<head th:replace="fragments :: head"></head>
 
 <body>
 
@@ -15,7 +8,7 @@
 <div th:replace="fragments :: navBar"></div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+<div class="bgimg-1 w3-display-container" id="home">
     <div class="w3-display-middle" style="white-space:nowrap;">
         <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">KENNY MANESS</span>
     </div>
@@ -82,7 +75,7 @@
 </div>
 
 <!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-2 w3-display-container w3-opacity-min">
+<div class="bgimg-2 w3-display-container">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">PORTFOLIO</span>
     </div>
@@ -133,38 +126,37 @@
         </div>
     </div>
 
-    <div class="w3-row-padding w3-center w3-section">
-        <div class="w3-half m3">
-        <form>
-            <button type="submit" class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px" formaction="https://open.spotify.com/artist/39qTRjqEX07GVBbJ9LPPGe">
-                <i class="fa fa-spotify fa-fw w3-xlarge w3-margin-right"></i>
-                LISTEN ON SPOTIFY
-            </button>
-        </form>
-        </div>
-
-        <div class="w3-half m3">
-        <form>
-            <button type="submit" class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px" formaction="https://music.apple.com/us/artist/kenny-maness/1296686372">
-                <i class="fa fa-apple fa-fw w3-xlarge w3-margin-right"></i>
-                LISTEN ON APPLE MUSIC
-            </button>
-        </form>
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+        <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img id="img01" class="w3-image">
+            <p id="caption" class="w3-opacity w3-large"></p>
         </div>
     </div>
-</div>
 
-<!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-        <img id="img01" class="w3-image">
-        <p id="caption" class="w3-opacity w3-large"></p>
+    <!-- Buttons for external links to music -->
+    <div class="w3-row-padding w3-center w3-section">
+        <div class="w3-half m3">
+            <form>
+                <button type="submit" class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px" formaction="https://open.spotify.com/artist/39qTRjqEX07GVBbJ9LPPGe" formtarget="_blank">
+                    <i class="fa fa-spotify fa-fw w3-xlarge w3-margin-right"></i>LISTEN ON SPOTIFY
+                </button>
+            </form>
+        </div>
+
+        <div class="w3-half m3">
+            <form>
+                <button type="submit" class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px" formaction="https://music.apple.com/us/artist/kenny-maness/1296686372" formtarget="_blank">
+                    <i class="fa fa-apple fa-fw w3-xlarge w3-margin-right"></i>LISTEN ON APPLE MUSIC
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 
 <!-- Third Parallax Image with Portfolio Text -->
-<div class="bgimg-3 w3-display-container w3-opacity-min">
+<div class="bgimg-3 w3-display-container">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
     </div>

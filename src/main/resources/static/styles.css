@@ -3,6 +3,7 @@ body, html {
   height: 100%;
   color: #777;
   line-height: 1.8;
+  background-image: url("images/bgimg-4.JPG");
 }
 
 /* Create a Parallax Effect */
@@ -29,6 +30,12 @@ body, html {
 .bgimg-3 {
   background-image: url("images/bgimg-2.JPG");
   min-height: 400px;
+}
+
+/* BG image for users oage */
+.bgimg-4 {
+  background-image: url('images/bgimg-4.JPG');
+  min-height: 100%;
 }
 
 .w3-wide {letter-spacing: 10px;}
