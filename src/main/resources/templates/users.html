@@ -13,8 +13,8 @@
     <h2>Here are the users.</h2>
     <table>
         <tr>
-            <th>Id</th>
             <th>Name</th>
+            <th>Username</th>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.getFirstName()}"></td>
