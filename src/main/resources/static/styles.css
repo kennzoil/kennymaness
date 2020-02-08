@@ -6,7 +6,7 @@ body, html {
   background-image: url("images/bgimg-4.JPG");
 }
 
-/* Create a Parallax Effect */
+/* Parallax Effect */
 .bgimg-1, .bgimg-2, .bgimg-3 {
   background-attachment: fixed;
   background-position: center;
@@ -14,7 +14,7 @@ body, html {
   background-size: cover;
 }
 
-/* First image (Logo. Full height) */
+/* First image (Logo Full height) */
 .bgimg-1 {
   background-image: url('images/bgimg-3.JPG');
   min-height: 100%;
@@ -32,7 +32,7 @@ body, html {
   min-height: 400px;
 }
 
-/* BG image for users oage */
+/* BG image for users page */
 .bgimg-4 {
   background-image: url('images/bgimg-4.JPG');
   min-height: 100%;
