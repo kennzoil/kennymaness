@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div th:replace="fragments :: navBar"></div>
+
+<div class="w3-content w3-container w3-padding-64">
+    <div th:if="${param.error}">Invalid username and password.</div>
+    <div th:if="${param.logout}">You have been logged out.</div>
+
+    <form method="post" action="@{/login}">
+        <fieldset>
+            <legend><h3 class="w3-center">Log in to your fan account here.</h3></legend>
+            <input type="text" name="username" placeholder="username" required><br>
+            <input type="text" name="password" placeholder="password" required><br>
+            <input type="submit" value="Log In">
+            <div>No account? <a href="/signup">Sign up for a fan account!</a></div>
+        </fieldset>
+    </form>
+</div>
+
+</body>
+
+</html>

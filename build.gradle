@@ -20,6 +20,9 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+
 	compile 'org.springframework.boot:spring-boot-starter-mail'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
