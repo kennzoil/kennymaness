@@ -9,16 +9,27 @@
     <div class="w3-content w3-container w3-padding-64">
     <form method="post" action="/signup">
         <fieldset>
-            <legend><h3 class="w3-center">Enter your name to be listed as a fan!</h3></legend>
-            <input type="text" name="first_name" placeholder="first name" required><br>
-            <input type="text" name="last_name" placeholder="last name" required><br>
-            <input type="text" name="username" placeholder="username" required><br>
-            <input type="text" name="email" placeholder="email address" required><br>
-            <input type="submit" value="I'm a fan!">
+            <legend><h3 class="w3-center">Create a username and password for your fan account</h3></legend>
+
+            <div>
+                <input type="text" name="username" placeholder="username" required>
+                <span><p th:text="${username_error}" class="error"></p></span>
+            </div>
+
+            <div>
+                <input type="password" name="password" placeholder="password" required>
+                <span><p th:text="${password_error}" class="error"></p></span>
+            </div>
+
+            <div>
+                <input type="password" name="passwordconfirm" placeholder="confirm password" required>
+                <span><p th:text="${passwords_match}" class="error"></p></span>
+            </div>
+
+            <div><input type="submit" value="Sign me up!"></div>
         </fieldset>
     </form>
     </div>
-
 
 </body>
 

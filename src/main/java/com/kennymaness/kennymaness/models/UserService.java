@@ -20,9 +20,9 @@ public class UserService {
     }
 
     // create new User object with parameters
-    public static User createUser(String first_name, String last_name, String username, String email) {
+    public static User createUser(String username, String password) {
 
-        User newUser = new User(first_name, last_name, username, email);
+        User newUser = new User(username, password);
 
         return newUser;
     }

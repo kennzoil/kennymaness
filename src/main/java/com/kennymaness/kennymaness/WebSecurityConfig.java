@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
+
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -21,16 +22,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        // set your configuration on the auth object
-        auth.inMemoryAuthentication()
-                .withUser("kenny")
-                .password("maness")
-                .roles("USER");
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/", "src/main/resources/static/**").permitAll()
+                .and().formLogin()
+                .loginPage("/login").permitAll()
+                .and().csrf().disable()
+                .sessionManagement().maximumSessions(1);
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
+    public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance(); }
 }

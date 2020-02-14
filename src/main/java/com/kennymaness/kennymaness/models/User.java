@@ -12,20 +12,20 @@ public class User {
     /* Columns */
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_id;
-
-    @Column(name = "first_name")
-    private String first_name;
-
-    @Column(name = "last_name")
-    private String last_name;
 
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "roles")
+    private String roles;
 
     /* Instantiation */
 
@@ -33,11 +33,11 @@ public class User {
     public User(){}
 
     // Custom Instantiation
-    public User(String first_name, String last_name, String username, String email) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String username, String password) {
         this.username = username;
-        this.email = email;
+        this.password = password;
+        this.active = true;
+        this.roles = "USER";
     }
 
     /* Getters & Setters */
@@ -45,21 +45,19 @@ public class User {
     // access user_id
     public Integer getId() { return user_id; }
 
-    // access first_name, last_name
-    public String getFirstName() { return first_name; }
-    public void setFirstName(String newFirstName) { this.first_name = newFirstName; }
-
-    public String getLastName() { return last_name; }
-    public void setLastName(String newLastName) { this.last_name = newLastName; }
-
-    public String getFullName() { return first_name + " " + last_name; }
-
     // access username
     public String getUsername() { return username; }
     public void setUsername(String newUsername) { this.username = newUsername; }
 
-    // access email
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    // access password
+    public String getPassword() { return password; }
+    public void setPassword(String newPassword) { this.password = newPassword; }
 
+    // access activation status
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
+
+    // access roles
+    public String getRoles() { return roles; }
+    public void setRoles(String roles) { this.roles = roles; }
 }

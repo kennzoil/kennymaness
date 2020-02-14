@@ -23,10 +23,6 @@ public class MainController {
         return "index";
     }
 
-    // render the login page
-    @RequestMapping(method = RequestMethod.GET, value = "login")
-    public String loginPageGet(Model model) { return "login"; }
-
     // render the blog page
     @RequestMapping(method = RequestMethod.GET, value = "blog")
     public String blogPageGet(Model model) { return "blog"; }
@@ -39,5 +35,17 @@ public class MainController {
 
         return "users";
     }
+
+    /**
+     * The following handler methods are for authentication testing.
+     */
+
+    // render the admin page
+    @RequestMapping(method = RequestMethod.GET, value = "admin")
+    public String adminPageGet() { return ("index"); }
+
+    // render the user page
+    @RequestMapping(method = RequestMethod.GET, value = "user")
+    public String userPageGet() { return ("index"); }
 
 }
