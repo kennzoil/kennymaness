@@ -1,8 +1,8 @@
 package com.kennymaness.kennymaness;
 
-import com.kennymaness.kennymaness.MyUserDetails;
-import com.kennymaness.kennymaness.daos.UserDao;
+import com.kennymaness.kennymaness.daos.UserRepository;
 import com.kennymaness.kennymaness.models.User;
+import com.kennymaness.kennymaness.models.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;

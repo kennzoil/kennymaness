@@ -2,18 +2,28 @@ package com.kennymaness.kennymaness;
 
 public class Validate {
 
-    // username must be between 3 and 25 characters
-    public static boolean validateUsername(String username) {
+    // returns true if either the username, password, or password confirmation are invalid
+    public static boolean invalid(String username, String password, String passwordconfirm) {
+        int i = 0;
+        if (!Validate.username(username)) { i++; }
+        if (!Validate.password(password)) { i++; }
+        if (!password.equals(passwordconfirm)) { i++; }
+        return i != 0;
+    }
+
+    // returns true if the given username is between 4 and 24 characters in length
+    public static boolean username(String username) {
         return (username.length() < 25 || username.length() > 3);
     }
 
-    // password must be at least 8 characters
-    public static boolean validatePassword(String password) {
-        if (password.length() > 7) { return checkPasswordParameters(password); }
+    // returns true if the given password is at least 8 characters in length
+    public static boolean password(String password) {
+        if (password.length() > 7) { return passwordParameters(password); }
         else { return false; }
     }
 
-    private static boolean checkPasswordParameters(String password) {
+    // returns true if the given password contains an uppercase letter, a lowercase letter, and a number
+    private static boolean passwordParameters(String password) {
 
         boolean hasNumber = false;
         boolean hasUppercase = false;
@@ -37,5 +47,11 @@ public class Validate {
             }
         }
         return false;
+    }
+
+    // returns true if the given email address is valid
+    public static boolean email(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
     }
 }

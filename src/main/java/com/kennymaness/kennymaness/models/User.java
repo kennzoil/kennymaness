@@ -1,12 +1,10 @@
 package com.kennymaness.kennymaness.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import javax.persistence.*;
+import java.util.HashSet;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     /* Columns */
@@ -25,7 +23,8 @@ public class User {
     private boolean active;
 
     @Column(name = "roles")
-    private String roles;
+//    @ManyToMany
+    private HashSet<Role> roles;
 
     /* Instantiation */
 
@@ -37,7 +36,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.active = true;
-        this.roles = "USER";
+//        this.roles = "USER";
     }
 
     /* Getters & Setters */
@@ -58,6 +57,6 @@ public class User {
     public void setActive(boolean active) { this.active = active; }
 
     // access roles
-    public String getRoles() { return roles; }
-    public void setRoles(String roles) { this.roles = roles; }
+    public HashSet<Role> getRoles() { return roles; }
+    public void setRoles(HashSet<Role> roles) { this.roles = roles; }
 }

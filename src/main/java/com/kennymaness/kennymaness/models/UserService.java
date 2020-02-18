@@ -1,30 +1,48 @@
 package com.kennymaness.kennymaness.models;
-import com.kennymaness.kennymaness.daos.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kennymaness.kennymaness.daos.RoleRepository;
+import com.kennymaness.kennymaness.daos.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserService {
 
-    @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
-    // listAll
-    public List<User> listAll() {
-        List<User> users = new ArrayList<>();
-        userDao.findAll().forEach(users::add);
-        return users;
+    public UserService(
+            UserRepository userRepository,
+            RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
-    // create new User object with parameters
+    // findByUsername - isolate a User by username
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    // saveUser - save a User to the database
+    public User saveUser(User user) {
+        user.setActive(true);
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        return userRepository.save(user);
+    }
+
+    // listAll - list each User
+    public List<User> listAll() {
+        return new ArrayList<>(userRepository.findAll());
+    }
+
+    // createUser - create a new User
     public static User createUser(String username, String password) {
-
-        User newUser = new User(username, password);
-
-        return newUser;
+        return new User(username, password);
     }
 
 }

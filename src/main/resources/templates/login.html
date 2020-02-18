@@ -13,9 +13,19 @@
     <form method="post" action="@{/login}">
         <fieldset>
             <legend><h3 class="w3-center">Log in to your fan account here.</h3></legend>
-            <div><input type="text" name="username" placeholder="username" required></div>
-            <div><input type="password" name="password" placeholder="password" required></div>
+
+            <div>
+                <input type="text" name="username" placeholder="username" required>
+                <span><p th:text="${username_error}" class="error"></p></span>
+            </div>
+
+            <div>
+                <input type="password" name="password" placeholder="password" required>
+                <span><p th:text="${password_error}" class="error"></p></span>
+            </div>
+
             <div><input type="submit" value="Log In"></div>
+
             <div>No account? <a href="/signup">Sign up for a fan account!</a></div>
         </fieldset>
     </form>
