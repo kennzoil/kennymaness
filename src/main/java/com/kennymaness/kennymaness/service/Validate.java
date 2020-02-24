@@ -1,4 +1,4 @@
-package com.kennymaness.kennymaness;
+package com.kennymaness.kennymaness.service;
 
 public class Validate {
 

@@ -1,15 +1,12 @@
-package com.kennymaness.kennymaness;
+package com.kennymaness.kennymaness.security;
 
 import com.kennymaness.kennymaness.models.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 

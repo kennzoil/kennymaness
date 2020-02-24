@@ -1,38 +1,32 @@
 package com.kennymaness.kennymaness.models;
 
+import lombok.*;
 import javax.persistence.*;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
     /* Columns */
 
+    // Role ID
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private int id;
+    private int role_id;
 
-    @Column(name = "role")
-//    @ManyToMany
+    // Name
+    @Column
     private String role;
 
-    /* Instantiation */
-
-    // Default Instantiation
-    public Role() {}
-
-    // Custom Instantiation
-    public Role(String role) {
-        this.role = role;
+    public String getRole() {
+        return role;
     }
 
-    /* Getters & Setters */
-
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

@@ -1,62 +1,78 @@
 package com.kennymaness.kennymaness.models;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
 
     /* Columns */
 
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_id;
+    private int user_id;
 
-    @Column(name = "username")
+    // Username
+    @Column
     private String username;
 
-    @Column(name = "password")
+    // Password
+    @Column
     private String password;
 
-    @Column(name = "active")
+    // Active Status
+    @Column
     private boolean active;
 
-    @Column(name = "roles")
-//    @ManyToMany
-    private HashSet<Role> roles;
+    // Roles
+    @Column
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "assigned_Roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> assignedRoles;
 
-    /* Instantiation */
-
-    // Default Instantiation
-    public User(){}
-
-    // Custom Instantiation
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.active = true;
-//        this.roles = "USER";
+    public String getUsername() {
+        return username;
     }
 
-    /* Getters & Setters */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    // access user_id
-    public Integer getId() { return user_id; }
+    public String getPassword() {
+        return password;
+    }
 
-    // access username
-    public String getUsername() { return username; }
-    public void setUsername(String newUsername) { this.username = newUsername; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    // access password
-    public String getPassword() { return password; }
-    public void setPassword(String newPassword) { this.password = newPassword; }
+    public boolean isActive() {
+        return active;
+    }
 
-    // access activation status
-    public boolean isActive() { return active; }
-    public void setActive(boolean active) { this.active = active; }
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-    // access roles
-    public HashSet<Role> getRoles() { return roles; }
-    public void setRoles(HashSet<Role> roles) { this.roles = roles; }
+    public Set<Role> getAssignedRoles() {
+        return assignedRoles;
+    }
+
+    public void setAssignedRoles(Set<Role> assignedRoles) {
+        this.assignedRoles = assignedRoles;
+    }
 }

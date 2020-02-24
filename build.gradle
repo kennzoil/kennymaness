@@ -25,6 +25,13 @@ dependencies {
 
 	compile 'org.springframework.boot:spring-boot-starter-mail'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 }
 
 test {

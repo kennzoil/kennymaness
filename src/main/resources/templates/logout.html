@@ -7,7 +7,7 @@
 <!-- Navbar (sit on top) -->
 <div th:replace="fragments :: navBar"></div>
 
-<div class="w3-display-middle" style="white-space:nowrap;">
+<div th:if="${param.logout}" class="w3-display-middle" style="white-space:nowrap;">
     <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
         You have been successfully logged out.
     </span>
