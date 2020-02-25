@@ -35,7 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/", "src/main/resources/static/**").permitAll()
+                .antMatchers(
+                        "/",
+                        "src/main/resources/static/images/**",
+                        "src/main/resources/static/script.js",
+                        "src/main/resources/static/styles.css"
+                ).permitAll()
                 .and().formLogin()
                 .loginPage("/login").permitAll()
                 .loginProcessingUrl("/perform_login")
@@ -44,7 +49,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .sessionManagement().maximumSessions(1);
     }
-
-//    @Bean
-//    public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance(); }
 }

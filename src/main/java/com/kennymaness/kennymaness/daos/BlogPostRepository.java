@@ -1,10 +1,9 @@
 package com.kennymaness.kennymaness.daos;
 
-import com.kennymaness.kennymaness.models.User;
+import com.kennymaness.kennymaness.models.BlogPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByUsername(String username);
+public interface BlogPostRepository extends JpaRepository<BlogPost, Integer> {
 }

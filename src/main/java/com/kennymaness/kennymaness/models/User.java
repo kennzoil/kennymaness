@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Builder
@@ -35,14 +34,14 @@ public class User {
     @Column
     private boolean active;
 
-    // Roles
-    @Column
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "assigned_Roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> assignedRoles;
+//    // Roles
+//    @Column
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(
+//            name = "assigned_Roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private String assignedRole;
 
     public String getUsername() {
         return username;
@@ -68,11 +67,11 @@ public class User {
         this.active = active;
     }
 
-    public Set<Role> getAssignedRoles() {
-        return assignedRoles;
+    public String getAssignedRole() {
+        return assignedRole;
     }
 
-    public void setAssignedRoles(Set<Role> assignedRoles) {
-        this.assignedRoles = assignedRoles;
+    public void setAssignedRole(String assignedRole) {
+        this.assignedRole = assignedRole;
     }
 }

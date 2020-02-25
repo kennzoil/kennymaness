@@ -22,14 +22,10 @@
                 <legend><h3 class="w3-center">Here are the users.</h3></legend>
                 <table class="kmtable">
                     <tr>
-                        <th class="kmtable">Name</th>
                         <th class="kmtable">Username</th>
-                        <th class="kmtable">Email</th>
                     </tr>
                     <tr th:each="user : ${users}">
-                        <td th:text="${user.getFullName()}" class="kmtable"></td>
                         <td th:text="${user.getUsername()}" class="kmtable"></td>
-                        <td th:text="${user.getEmail()}" class="kmtable"></td>
                     </tr>
                 </table>
             </fieldset>

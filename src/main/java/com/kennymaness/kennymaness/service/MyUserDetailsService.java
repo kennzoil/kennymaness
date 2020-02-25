@@ -1,56 +1,28 @@
 package com.kennymaness.kennymaness.service;
 
 import com.kennymaness.kennymaness.daos.UserRepository;
-import com.kennymaness.kennymaness.models.Role;
 import com.kennymaness.kennymaness.models.User;
-import com.kennymaness.kennymaness.service.UserService;
+import com.kennymaness.kennymaness.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        List<GrantedAuthority> authorities = getUserAuthority(user.getAssignedRoles());
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
 
-        return buildUserForAuthentication(user, authorities);
-    }
+        user.orElseThrow(()-> new UsernameNotFoundException("Not Found: " + username));
 
-    private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
-        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
-        for (Role role : userRoles) {
-            roles.add(new SimpleGrantedAuthority(role.getRole()));
-        }
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
-        return grantedAuthorities;
-    }
-
-    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                user.isActive(),
-                true,
-                true,
-                true,
-                authorities);
+        return user.map(MyUserDetails::new).get();
     }
 }
