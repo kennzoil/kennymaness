@@ -26,10 +26,10 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -44,7 +44,7 @@ public class LoginController {
 
     // login get request
     @RequestMapping(method = RequestMethod.GET, value = "login")
-    public String loginPageGet(@ModelAttribute LoginForm loginForm) { return "login"; }
+    public String loginPageGet() { return "registration/login"; }
 
     // login post request
     public String processLoginForm(

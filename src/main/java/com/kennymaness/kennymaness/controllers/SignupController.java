@@ -22,7 +22,7 @@ public class SignupController {
 
     // render signup page
     @RequestMapping(method = RequestMethod.GET)
-    public String renderSignupPage() {return "signup";}
+    public String renderSignupPage() {return "registration/signup";}
 
 
     // signup form handler
@@ -32,7 +32,6 @@ public class SignupController {
             String username,
             String password,
             String passwordconfirm,
-            BindingResult bindingResult,
             Model model
     ) {
         // initialize error messages
@@ -45,7 +44,7 @@ public class SignupController {
         if (userExists != null) {
             username_error = "Someone's already using that username.";
             model.addAttribute("username_error", username_error);
-            return "signup";
+            return "registration/signup";
         }
 
         // if any errors are present,
@@ -64,7 +63,8 @@ public class SignupController {
             }
 
             // re-render signup page
-            return "/signup";
+            model.addAttribute("username", username);
+            return "registration/signup";
 
         } else {
 
@@ -77,7 +77,7 @@ public class SignupController {
             userService.saveUser(newUser);
 
             // redirect to homepage
-            return "redirect:";
+            return "redirect:/";
         }
     }
 }

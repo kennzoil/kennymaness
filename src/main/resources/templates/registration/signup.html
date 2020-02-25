@@ -12,7 +12,7 @@
             <legend><h3 class="w3-center">Create a username and password for your fan account</h3></legend>
 
             <div>
-                <input type="text" name="username" placeholder="username" required>
+                <input type="text" name="username" placeholder="username" th:attr="value = ${username}" required>
                 <span><p th:text="${username_error}" class="error"></p></span>
             </div>
 
