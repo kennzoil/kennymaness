@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @EnableWebSecurity
@@ -21,9 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean
     public UserDetailsService userDetailsService() { return super.userDetailsService(); }
-
-    @Bean
-    public PasswordEncoder getPasswordEncoder(){ return new BCryptPasswordEncoder(); }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -43,9 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 .and().formLogin()
                 .loginPage("/login").permitAll()
-                .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/", true)
-                .failureUrl("/login.html?error=true")
                 .and().csrf().disable()
                 .sessionManagement().maximumSessions(1);
     }

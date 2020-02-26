@@ -27,10 +27,6 @@ public class MainController {
         return "index";
     }
 
-    // render the blog page
-    @RequestMapping(method = RequestMethod.GET, value = "blog")
-    public String blogPageGet(Model model) { return "blog/blog"; }
-
     // render the users page
     @RequestMapping(method = RequestMethod.GET, value = "users")
     public String usersPageGet(Model model) {
