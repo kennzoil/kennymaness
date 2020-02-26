@@ -55,11 +55,11 @@ public class LoginController {
     ){
         if (errors.hasErrors() || !verify.equals(newUser.getPassword())) {
             model.addAttribute("user", newUser);
-            return "signup";
+            return "registration/signup";
         }
         else if (userRepository.findByUsername(newUser.getUsername()) != null){
             model.addAttribute("existerror", "User Already Exists");
-            return "signup";
+            return "registration/signup";
         }
         else {
             String hashedPassword = passwordEncoder.encode(newUser.getPassword());
@@ -72,6 +72,10 @@ public class LoginController {
             return "redirect:user";
         }
     }
+
+    /* OLD LOGIN HANDLER
+
+    ##########################################################
 //    @RequestMapping(method = RequestMethod.POST, value = "login")
 //    public String login(
 //            HttpServletRequest request,
@@ -93,6 +97,8 @@ public class LoginController {
 //            return "login";
 //        }
 //    }
+
+     */
 
     // logout
     @RequestMapping(method = RequestMethod.GET, value = "logout")
