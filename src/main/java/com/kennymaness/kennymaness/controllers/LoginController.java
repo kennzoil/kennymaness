@@ -1,8 +1,8 @@
 package com.kennymaness.kennymaness.controllers;
 
 import com.kennymaness.kennymaness.daos.UserRepository;
-import com.kennymaness.kennymaness.models.User;
-import com.kennymaness.kennymaness.service.LoginForm;
+//import com.kennymaness.kennymaness.models.User;
+//import com.kennymaness.kennymaness.service.LoginForm;
 import com.kennymaness.kennymaness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,13 +12,12 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+//import javax.validation.Valid;
 //import java.io.IOException;
 
 @Controller
@@ -44,34 +43,42 @@ public class LoginController {
 
     // login get request
     @RequestMapping(method = RequestMethod.GET, value = "login")
-    public String loginPageGet() { return "registration/login"; }
+    public String loginPageGet(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
 
-    // login post request
-    public String processLoginForm(
-            @ModelAttribute @Valid User newUser,
-            Errors errors,
-            String verify,
-            Model model
-    ){
-        if (errors.hasErrors() || !verify.equals(newUser.getPassword())) {
-            model.addAttribute("user", newUser);
-            return "registration/signup";
-        }
-        else if (userRepository.findByUsername(newUser.getUsername()) != null){
-            model.addAttribute("existerror", "User Already Exists");
-            return "registration/signup";
-        }
-        else {
-            String hashedPassword = passwordEncoder.encode(newUser.getPassword());
-            newUser.setPassword(hashedPassword);
-            newUser.setActive(true);
-            newUser.setAssignedRole("USER");
-            //User newestUser = new User(newUser.getUsername(), hashedPassword, newUser.getEmail(), true, "ROLE_USER");
-            userRepository.save(newUser);
-            model.addAttribute("username", newUser.getUsername());
-            return "redirect:user";
-        }
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "registration/login";
     }
+
+    // No login POST request handler needed; Spring Security takes care of that.
+//    public String processLoginForm(
+//            @ModelAttribute @Valid User newUser,
+//            Errors errors,
+//            String verify,
+//            Model model
+//    ){
+//        if (errors.hasErrors() || !verify.equals(newUser.getPassword())) {
+//            model.addAttribute("user", newUser);
+//            return "registration/signup";
+//        }
+//        else if (userRepository.findByUsername(newUser.getUsername()) != null){
+//            model.addAttribute("existerror", "User Already Exists");
+//            return "registration/signup";
+//        }
+//        else {
+//            String hashedPassword = passwordEncoder.encode(newUser.getPassword());
+//            newUser.setPassword(hashedPassword);
+//            newUser.setActive(true);
+//            newUser.setAssignedRole("USER");
+//            //User newestUser = new User(newUser.getUsername(), hashedPassword, newUser.getEmail(), true, "ROLE_USER");
+//            userRepository.save(newUser);
+//            model.addAttribute("username", newUser.getUsername());
+//            return "redirect:user";
+//        }
+//    }
 
     /* OLD LOGIN HANDLER
 

@@ -7,8 +7,8 @@
 <div th:replace="fragments :: navBar"></div>
 
 <div class="w3-content w3-container w3-padding-64">
-    <div th:if="${param.error}">Invalid username or password.</div>
-    <div th:if="${param.logout}">You have been logged out.</div>
+    <div th:if="${error}">Invalid username or password.</div>
+    <div th:if="${message}">You have been logged out.</div>
 
     <form method="post" action="@{/login}">
         <fieldset>
@@ -16,7 +16,7 @@
 
             <div>
                 <input type="text" name="username" placeholder="username" required>
-                <span><p th:text="${username_error}" class="error"></p></span>
+                <span><p th:text="${error}" class="error"></p></span>
             </div>
 
             <div>

@@ -1,15 +1,12 @@
 package com.kennymaness.kennymaness.service;
 import com.kennymaness.kennymaness.daos.RoleRepository;
 import com.kennymaness.kennymaness.daos.UserRepository;
-import com.kennymaness.kennymaness.models.Role;
 import com.kennymaness.kennymaness.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -39,8 +36,6 @@ public class UserService {
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
-        Role userRole = roleRepository.findByRole("ADMIN");
-        user.setAssignedRole("USER");
         userRepository.save(user);
     }
 
@@ -54,6 +49,7 @@ public class UserService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setAssignedRole("USER");
         return user;
     }
 }
