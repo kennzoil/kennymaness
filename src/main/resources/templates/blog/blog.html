@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -7,10 +7,24 @@
 <!-- Navbar (sit on top) -->
 <div th:replace="fragments :: navBar"></div>
 
-<div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-        This portion is under construction.
-    </span>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Kenny's Blog</h1>
+        <p class="lead" th:unless="${blogPosts} and ${blogPosts.size()}">No Posts Yet. Sorry!</p>
+    </div>
+    <div class="row">
+        <div class="col-6 col-md-4" th:each="blogPost : ${blogPosts}">
+            <div class="card mt-5">
+                <div class="wrapper">
+                    <img th:src="@{'data:image/png;base64,'+${blogPost.getImageString()}}" class="card-img-top img-fluid" alt="Our Mistake"/>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><a th:href="@{'/view/' + ${blogPost.id}}" th:text="${blogPost.title}"></a></h5>
+                    <p class="card-text" th:text="${blogPost.getSnippet()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -111,6 +111,6 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.GET, value = "logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
-        return "redirect:/";
+        return "/";
     }
 }

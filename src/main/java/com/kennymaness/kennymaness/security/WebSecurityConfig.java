@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .antMatchers(
                         "/",
+                        "/blog/**",
                         "src/main/resources/static/images/**",
                         "src/main/resources/static/script.js",
                         "src/main/resources/static/styles.css"
