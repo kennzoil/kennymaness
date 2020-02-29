@@ -52,11 +52,20 @@ public class BlogController {
     ) throws IOException {
 
         // initialize error messages and error message counter
+
+        // ERROR 1
+        System.out.println("\nope! #1\n");
+
         String titleerrors = "";
         String descriptionerrors = "";
         String snippeterrors = "";
+
+        // ERROR 2
+        System.out.println("\nope! #2\n");
+
         int errors=0;
 
+        System.out.println("\nope! #3\n");
         if (title.length() > 25 || title.length() < 3) {
             titleerrors = "Title must be between 3 and 25 Characters long";
             errors++;
@@ -79,20 +88,23 @@ public class BlogController {
             blogPost.setDescription(description);
             blogPost.setTitle(title);
             model.addAttribute("blogPost", blogPost);
-            return "pages/add";
+            System.out.println("\nope! #3\n");
+            return "blog/add";
         }
-        byte [] img = file.getBytes();
+//        byte [] img = file.getBytes();
         BlogPost newBlogPost = new BlogPost();
         newBlogPost.setTitle(title);
         newBlogPost.setDescription(description);
-        newBlogPost.setPostImage(img);
+//        newBlogPost.setPostImage(img);
         newBlogPost.setSnippet(snippet);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        MyUserDetails myUserDetails = (MyUserDetails)authentication.getPrincipal();
+        //TODO: figure out what's up with this next line and how it works
+        MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
         User user = userRepository.findByUsername(myUserDetails.getUsername());
         newBlogPost.setUser(user);
         newBlogPost.setDate(new Date());
         blogPostRepository.save(newBlogPost);
-        return "redirect:";
+        System.out.println("it worked");
+        return "redirect:/";
     }
 }
