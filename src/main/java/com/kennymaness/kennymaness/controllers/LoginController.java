@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 //import javax.validation.Valid;
-//import java.io.IOException;
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/")
@@ -35,11 +35,11 @@ public class LoginController {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 
-//    @RequestMapping("authenticate")
-//    public String authenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        boolean authenticate = request.authenticate(response);
-//        return authenticate ? "index" : null;
-//    }
+    @RequestMapping("authenticate")
+    public String authenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean authenticate = request.authenticate(response);
+        return authenticate ? "index" : null;
+    }
 
     // login get request
     @RequestMapping(method = RequestMethod.GET, value = "login")

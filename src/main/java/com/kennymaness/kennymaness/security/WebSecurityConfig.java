@@ -29,17 +29,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/user", "/blog/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(
                         "/",
-                        "/blog/**",
                         "src/main/resources/static/images/**",
                         "src/main/resources/static/script.js",
                         "src/main/resources/static/styles.css"
                 ).permitAll()
                 .and().formLogin()
+                .loginProcessingUrl("/perform_login")
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/", true)
+                .failureUrl("/login.html?error=true")
                 .and().csrf().disable()
                 .sessionManagement().maximumSessions(1);
     }

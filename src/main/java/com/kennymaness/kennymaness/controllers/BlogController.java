@@ -23,8 +23,9 @@ public class BlogController {
     private BlogPostRepository blogPostRepository;
     private UserRepository userRepository;
 
+
     // render the blog page
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String blogPageGet(Model model) {
         model.addAttribute("blogPosts", blogPostRepository.findAll());
         return "blog/blog";
@@ -42,7 +43,7 @@ public class BlogController {
     }
 
     // add blog post POST handler
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "blog/add", method = RequestMethod.POST)
     public String processAddPostForm(
             String title,
             String description,
