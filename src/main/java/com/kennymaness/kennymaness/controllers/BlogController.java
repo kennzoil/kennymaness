@@ -43,7 +43,7 @@ public class BlogController {
     }
 
     // add blog post POST handler
-    @RequestMapping(value = "blog/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddPostForm(
             String title,
             String description,

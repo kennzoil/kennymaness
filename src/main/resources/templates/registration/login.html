@@ -10,7 +10,7 @@
     <div th:if="${error}">Invalid username or password.</div>
     <div th:if="${message}">You have been logged out.</div>
 
-    <form method="post" action="@{/login}">
+    <form method="post" th:action="@{/login}">
         <fieldset>
             <legend><h3 class="w3-center">Log in to your fan account here.</h3></legend>
 
