@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
+    private User user;
+
     private String username;
     private String password;
     private boolean active;
@@ -72,5 +74,8 @@ public class MyUserDetails implements UserDetails {
                 Objects.equals(password, that.password) &&
                 Objects.equals(authorities, that.authorities);
     }
+
+    @Override
+    public int hashCode() { return Objects.hash(username, password, active, authorities); }
 
 }

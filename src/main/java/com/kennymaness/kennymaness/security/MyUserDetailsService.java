@@ -1,4 +1,4 @@
-package com.kennymaness.kennymaness.service;
+package com.kennymaness.kennymaness.security;
 
 import com.kennymaness.kennymaness.daos.UserRepository;
 import com.kennymaness.kennymaness.models.User;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -18,11 +18,11 @@ public class MyUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
-
-        user.orElseThrow(()-> new UsernameNotFoundException("Not Found: " + username));
-
-        return user.map(MyUserDetails::new).get();
+    public UserDetails loadUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return new MyUserDetails(user);
     }
 }

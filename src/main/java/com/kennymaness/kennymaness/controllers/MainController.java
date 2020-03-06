@@ -1,7 +1,7 @@
 package com.kennymaness.kennymaness.controllers;
 
+import com.kennymaness.kennymaness.daos.UserRepository;
 import com.kennymaness.kennymaness.models.*;
-import com.kennymaness.kennymaness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
     // instantiate UserDao object
+
     @Autowired
-    private UserService userService;
+    UserRepository userRepository;
 
     private User user;
 
@@ -31,7 +32,7 @@ public class MainController {
     @RequestMapping(method = RequestMethod.GET, value = "users")
     public String usersPageGet(Model model) {
 
-        model.addAttribute("users", userService.listAll());
+        model.addAttribute("users", userRepository.findAll());
 
         return "users";
     }
@@ -45,7 +46,7 @@ public class MainController {
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUsername(auth.getName());
+        User user = userRepository.findByUsername(auth.getName());
         modelAndView.addObject("username", "Welcome " + user.getUsername());
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin");

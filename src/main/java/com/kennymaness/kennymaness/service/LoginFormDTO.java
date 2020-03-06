@@ -1,6 +1,6 @@
 package com.kennymaness.kennymaness.service;
 
-public class LoginForm {
+public class LoginFormDTO {
 
     private String username;
     private String password;

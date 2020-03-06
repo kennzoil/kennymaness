@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/blog")
@@ -25,7 +26,7 @@ public class BlogController {
 
 
     // render the blog page
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="", method = RequestMethod.GET)
     public String blogPageGet(Model model) {
         model.addAttribute("blogPosts", blogPostRepository.findAll());
         return "blog/blog";
@@ -92,16 +93,17 @@ public class BlogController {
             System.out.println("\nope! #3\n");
             return "blog/add";
         }
-//        byte [] img = file.getBytes();
+        byte [] img = file.getBytes();
         BlogPost newBlogPost = new BlogPost();
         newBlogPost.setTitle(title);
         newBlogPost.setDescription(description);
-//        newBlogPost.setPostImage(img);
+        newBlogPost.setPostImage(img);
         newBlogPost.setSnippet(snippet);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //TODO: figure out what's up with this next line and how it works
         MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
         User user = userRepository.findByUsername(myUserDetails.getUsername());
+
         newBlogPost.setUser(user);
         newBlogPost.setDate(new Date());
         blogPostRepository.save(newBlogPost);

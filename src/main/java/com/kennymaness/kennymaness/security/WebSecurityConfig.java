@@ -6,27 +6,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-//import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsService userDetailsService;
+    MyUserDetailsService userDetailsService;
 
-//    @Autowired
-//    private DataSource dataSource;
-
-    @Override
     @Bean
-    public UserDetailsService userDetailsService() { return super.userDetailsService(); }
+    public PasswordEncoder getPasswordEncoder(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -35,22 +35,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .antMatchers("/user", "/blog/**").hasRole("USER")
+//                .antMatchers(HttpMethod.POST, "/blog/add").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/registration/**").permitAll()
+//                .antMatchers(
+//                        "/",
+//                        "src/main/resources/static/images/**",
+//                        "src/main/resources/static/script.js",
+//                        "src/main/resources/static/styles.css"
+//                ).permitAll()
+//                .and().formLogin()
+//                .loginPage("/login").permitAll()
+////                .loginProcessingUrl("/login/process")
+//                .and().logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .and().csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                .maximumSessions(1);
+
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user", "/blog", "/blog/add").hasAnyRole("ADMIN", "USER")
-                .antMatchers(
-                        "/",
-                        "src/main/resources/static/images/**",
-                        "src/main/resources/static/script.js",
-                        "src/main/resources/static/styles.css"
-                ).permitAll()
-                .and().formLogin()
+                .antMatchers("/", "/blog").permitAll()
+//                .antMatchers("/blog").hasRole("USER")
+                .and()
+                .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/", true)
-//                .failureUrl("/login.html?error=true")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().csrf().disable()
                 .sessionManagement().maximumSessions(1);
+
     }
 }

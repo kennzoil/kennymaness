@@ -1,9 +1,10 @@
 package com.kennymaness.kennymaness.controllers;
 
+import com.kennymaness.kennymaness.daos.UserRepository;
 import com.kennymaness.kennymaness.service.Validate;
 import com.kennymaness.kennymaness.models.User;
-import com.kennymaness.kennymaness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class SignupController {
 
     @Autowired
-    private UserService userService;
+    PasswordEncoder passwordEncoder;
 
-    public SignupController() {}
+    @Autowired
+    UserRepository userRepository;
+
+//    public SignupController() {}
 
     /* Signup */
 
@@ -39,7 +43,7 @@ public class SignupController {
         String passwords_match;
 
         // Username must not be already taken
-        User userExists = userService.findUserByUsername(username);
+        User userExists = userRepository.findByUsername(username);
         if (userExists != null) {
             username_error = "Someone's already using that username.";
             model.addAttribute("username_error", username_error);
@@ -72,11 +76,15 @@ public class SignupController {
             model.addAttribute("password", password);
 
             // add a new User object to the database
-            User newUser = UserService.createUser(username, password);
-            userService.saveUser(newUser);
+            User newUser = new User();
+            newUser.setUsername(username);
+            String hashedPassword = passwordEncoder.encode(password);
+            newUser.setPassword(hashedPassword);
+            newUser.setAssignedRole("USER");
+            userRepository.save(newUser);
 
             // redirect to homepage
-            return "redirect:/";
+            return "redirect:/login";
         }
     }
 }
