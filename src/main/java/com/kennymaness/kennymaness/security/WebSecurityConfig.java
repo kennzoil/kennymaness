@@ -35,34 +35,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/admin").hasRole("ADMIN")
-//                .antMatchers("/user", "/blog/**").hasRole("USER")
-//                .antMatchers(HttpMethod.POST, "/blog/add").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.POST, "/registration/**").permitAll()
-//                .antMatchers(
-//                        "/",
-//                        "src/main/resources/static/images/**",
-//                        "src/main/resources/static/script.js",
-//                        "src/main/resources/static/styles.css"
-//                ).permitAll()
-//                .and().formLogin()
-//                .loginPage("/login").permitAll()
-////                .loginProcessingUrl("/login/process")
-//                .and().logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .and().csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-//                .maximumSessions(1);
-
         http.authorizeRequests()
-                .antMatchers("/", "/blog").permitAll()
-//                .antMatchers("/blog").hasRole("USER")
-                .and()
-                .formLogin()
+                .antMatchers(HttpMethod.POST, "/**").permitAll()
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/admin", "/user", "/users", "/blog/**").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/blog/add").hasRole("ADMIN")
+//                .antMatchers("/user", "/users", "/blog").hasRole("USER")
+                .and().formLogin()
                 .loginPage("/login").permitAll()
+//                .loginProcessingUrl("/login/process")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().csrf().disable()
-                .sessionManagement().maximumSessions(1);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(1);
 
     }
 }

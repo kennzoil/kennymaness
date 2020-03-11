@@ -37,7 +37,7 @@ public class LoginController {
     }
 
     // login get request
-    @RequestMapping(method = RequestMethod.GET, value = "login")
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String loginPageGet(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");

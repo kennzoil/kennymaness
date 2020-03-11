@@ -2,6 +2,7 @@ package com.kennymaness.kennymaness.controllers;
 
 import com.kennymaness.kennymaness.daos.UserRepository;
 import com.kennymaness.kennymaness.models.*;
+import com.kennymaness.kennymaness.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,14 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping(value = "/")
 public class MainController {
 
-    // instantiate UserDao object
-
     @Autowired
     UserRepository userRepository;
+
+    private MyUserDetails myUserDetails;
 
     private User user;
 
@@ -42,19 +45,22 @@ public class MainController {
      */
 
     // render the admin page
-    @RequestMapping(value="admin", method = RequestMethod.GET)
-    public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
-        modelAndView.addObject("username", "Welcome " + user.getUsername());
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("admin");
-        return modelAndView;
-    }
-
-    // render the user page
-    @RequestMapping(method = RequestMethod.GET, value = "user")
-    public String userPageGet() { return ("index"); }
+//    @RequestMapping(value="admin", method = RequestMethod.GET)
+//    public String adminPageGet(Model model){
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userRepository.findByUsername(auth.getName());
+//        model.addAttribute("admin_message", user);
+//        System.out.println("username");
+//        return "admin";
+//    }
+//
+//    // render the user page
+//    @RequestMapping(value = "user", method = RequestMethod.GET)
+//    public String userPageGet(Model model){
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userRepository.findByUsername(auth.getName());
+//        model.addAttribute("user_message", "This page is just for you. Hooray!");
+//        return "user";
+//    }
 
 }

@@ -7,20 +7,23 @@
     <div th:replace="fragments :: navBar"></div>
 
     <div class="w3-content w3-container w3-padding-64">
-    <form method="post" action="/signup">
+    <form method="post" th:action="@{/signup}">
         <fieldset>
             <legend><h3 class="w3-center">Sign up for your fan account here.</h3></legend>
 
+            <!--USERNAME-->
             <div>
-                <input type="text" name="username" placeholder="username" th:attr="value = ${username}" required>
+                <input type="text" name="username" placeholder="username" th:attr="value=${username}" required>
                 <span><p th:text="${username_error}" class="error"></p></span>
             </div>
 
+            <!--PASSWORD-->
             <div>
                 <input type="password" name="password" placeholder="password" required>
                 <span><p th:text="${password_error}" class="error"></p></span>
             </div>
 
+            <!--PASSWORDCONFIRM-->
             <div>
                 <input type="password" name="passwordconfirm" placeholder="confirm password" required>
                 <span><p th:text="${passwords_match}" class="error"></p></span>
@@ -32,7 +35,5 @@
         </fieldset>
     </form>
     </div>
-
 </body>
-
 </html>

@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments :: head"></head>
 
 <body>
+    <div th:replace="fragments :: navBar"></div>
 
-<!-- Navbar (sit on top) -->
-<div th:replace="fragments :: navBar"></div>
-
-<div class="w3-content w3-container w3-padding-64">
-
-    <form method="post" enctype="multipart/form-data">
+    <div class="w3-content w3-container w3-padding-64">
+    <form method="post" th:action="@{/blog/add}">
         <fieldset>
-            <legend><h3 class="w3-center" th:text="${title}"></h3></legend>
-            <div class="form-group">
-                <label th:for="title">Title:</label>
-                <input class="form-control" id="title" name="title" th:value="${blogPost.getTitle()}"/>
-                <span><p th:text="${titleerrors}" class="error"></p></span>
-            </div>
-            <div class="form-group">
-                <label th:for="description">Description:</label>
-                <textarea class="form-control" id="description" name="description" rows="3" th:text="${blogPost.getDescription()}"></textarea>
-                <span><p th:text="${descriptionerrors}" class="error"></p></span>
-            </div>
-            <div class="form-group">
-                <label th:for="snippet">Snippet:</label>
-                <input class="form-control" id="snippet" name="snippet" th:value="${blogPost.getSnippet()}"/>
-                <span><p th:text="${snippeterrors}" class="error"></p></span>
-            </div>
-            <div class="form-group">
-                <label th:for="postImage">Item Image:</label>
-                <input class="form-control" type="file" id="postImage" name="postImage"/>
+            <legend><h3 class="w3-center">Add a new blog post here.</h3></legend>
+
+            <!--TITLE-->
+            <div>
+                <input type="text" name="title" placeholder="Title" th:attr="value=${title}" required>
+                <span><p th:text="${title_error}" class="error"></p></span>
             </div>
 
-            <input type="submit" value="Add Post"/>
+            <!--DESCRIPTION-->
+            <div>
+                <textarea name="description" placeholder="Blog Post Description" rows="3" th:attr="value=${description}"></textarea>
+                <span><p th:text="${description_error}" class="error"></p></span>
+            </div>
+
+            <!--SNIPPET-->
+            <div>
+                <input type="text" name="snippet" placeholder="Snippet" th:attr="value=${snippet}">
+                <span><p th:text="${snippet_error}" class="error"></p></span>
+            </div>
+
+            <!--IMAGE-->
+<!--            <div>-->
+<!--                <input type="file" name="image" accept="image/*">-->
+<!--            </div>-->
+
+            <input type="submit" value="Add Blog Post">
         </fieldset>
     </form>
-
 </div>
-
 </body>
 </html>

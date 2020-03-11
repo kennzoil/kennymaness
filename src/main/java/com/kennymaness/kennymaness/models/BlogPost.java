@@ -5,15 +5,23 @@ import javax.validation.constraints.NotNull;
 
 import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Optional;
+
 
 @Entity
 public class BlogPost {
 
-    public BlogPost(String title, String description, byte[] postImage, String snippet) {
+    public BlogPost(
+            String title,
+            String description,
+//            byte[] postImage,
+            String snippet
+    ) {
         this.title = title;
         this.description = description;
-        this.postImage = postImage;
+//        this.postImage = postImage;
         this.snippet = snippet;
         this.date = new Date();
     }
@@ -82,41 +90,41 @@ public class BlogPost {
     @Column(length = 100000)
     private String description;
 
-    public byte[] getPostImage() {
-        return postImage;
-    }
+//    public byte[] getPostImage() {
+//        return postImage;
+//    }
 
-    public void setPostImage(byte[] postImage) {
-        this.postImage = postImage;
-    }
+//    public void setPostImage(byte[] postImage) {
+//        this.postImage = postImage;
+//    }
 
-    @Lob
-    private byte[] postImage;
+//    @Lob
+//    private byte[] postImage;
 
-    public String getImageString(){
-        String s = Base64.getEncoder().encodeToString(postImage);
-        return s;
-    }
+//    public String getImageString(){
+//        String s = Base64.getEncoder().encodeToString(postImage);
+//        return s;
+//    }
 
-    @OneToMany(mappedBy="blogPost", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    private List<Comments> comments = new ArrayList<>();
+//    @OneToMany(mappedBy="blogPost", orphanRemoval = true, cascade = CascadeType.PERSIST)
+//    private List<Comments> comments = new ArrayList<>();
 
-    public User getUser() {
-        return user;
-    }
+//    public Optional<User> getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(Optional<User> user) {
+//        this.user = user;
+//    }
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @OneToMany(mappedBy="blogPost", orphanRemoval = true)
-    private List<Likes> likes = new ArrayList<>();
-
-    public List<Likes> getLikes() {
-        return likes;
-    }
+//    @OneToMany(mappedBy="blogPost", orphanRemoval = true)
+//    private List<Likes> likes = new ArrayList<>();
+//
+//    public List<Likes> getLikes() {
+//        return likes;
+//    }
 }

@@ -77,15 +77,15 @@ public class User {
         this.assignedRole = assignedRole;
     }
 
-    @Builder.Default
-    @OneToMany(mappedBy="user")
-    private List<Comments> comments = new ArrayList<>();
+//    @Builder.Default
+//    @OneToMany(mappedBy="user")
+//    private List<Comments> comments = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy="user")
     private List<BlogPost> blogPosts = new ArrayList<>();
 
-    @Builder.Default
-    @OneToMany(mappedBy="user")
-    private List<Likes> likes = new ArrayList<>();
+//    @Builder.Default
+//    @OneToMany(mappedBy="user")
+//    private List<Likes> likes = new ArrayList<>();
 }

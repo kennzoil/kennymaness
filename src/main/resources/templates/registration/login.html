@@ -7,18 +7,21 @@
 <div th:replace="fragments :: navBar"></div>
 
 <div class="w3-content w3-container w3-padding-64">
-    <div th:if="${error}">Invalid username or password.</div>
-    <div th:if="${message}">You have been logged out.</div>
+
+    <div th:if="${error}" th:text="${error}"></div>
+    <div th:if="${message}" th:text="${message}"></div>
 
     <form th:action="@{/login}" method="post">
         <fieldset>
             <legend><h3 class="w3-center">Log in to your fan account here.</h3></legend>
 
+            <!--USERNAME-->
             <div>
                 <input type="text" name="username" placeholder="username" required>
                 <span><p th:text="${error}" class="error"></p></span>
             </div>
 
+            <!--PASSWORD-->
             <div>
                 <input type="password" name="password" placeholder="password" required>
                 <span><p th:text="${password_error}" class="error"></p></span>
@@ -30,7 +33,5 @@
         </fieldset>
     </form>
 </div>
-
 </body>
-
 </html>
