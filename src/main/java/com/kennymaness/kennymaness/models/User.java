@@ -45,6 +45,10 @@ public class User {
 //            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private String assignedRole;
 
+    public int getUser_id() {
+        return user_id;
+    }
+
     public String getUsername() {
         return username;
     }

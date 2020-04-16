@@ -16,12 +16,10 @@ public class BlogPost {
     public BlogPost(
             String title,
             String description,
-//            byte[] postImage,
             String snippet
     ) {
         this.title = title;
         this.description = description;
-//        this.postImage = postImage;
         this.snippet = snippet;
         this.date = new Date();
     }
@@ -90,32 +88,16 @@ public class BlogPost {
     @Column(length = 100000)
     private String description;
 
-//    public byte[] getPostImage() {
-//        return postImage;
-//    }
-
-//    public void setPostImage(byte[] postImage) {
-//        this.postImage = postImage;
-//    }
-
-//    @Lob
-//    private byte[] postImage;
-
-//    public String getImageString(){
-//        String s = Base64.getEncoder().encodeToString(postImage);
-//        return s;
-//    }
-
 //    @OneToMany(mappedBy="blogPost", orphanRemoval = true, cascade = CascadeType.PERSIST)
 //    private List<Comments> comments = new ArrayList<>();
 
-//    public Optional<User> getUser() {
-//        return user;
-//    }
+    public User getUser() {
+        return user;
+    }
 
-//    public void setUser(Optional<User> user) {
-//        this.user = user;
-//    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
