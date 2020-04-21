@@ -19,9 +19,9 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
-	implementation 'org.springframework.session:spring-session-core'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.security:spring-security-test'
+//	implementation 'org.springframework.session:spring-session-core'
 
 	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
 
